@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "7ede1fa2-4bbb-4dc4-a6b8-25b5d4d90966",
+		"name": "Nalanda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45398134",
+		"_collection_link": "https://fran-2049233.postman.co/workspace/Fran's-Workspace~5bef1f30-194f-4f8f-8e2d-e645f2d6e4a0/collection/45398134-7ede1fa2-4bbb-4dc4-a6b8-25b5d4d90966?action=share&source=collection_link&creator=45398134"
+	},
+	"item": [
+		{
+			"name": "CreateApplicantController",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test1\",\n    \"email\": \"test1#example.com\",\n    \"exp\": 5,\n    \"cv\": \"This is my CV.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/create-applicant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"create-applicant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRecruiterController",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Recruiter1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/create-recruiter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"create-recruiter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AssignRecruiterController",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicantId\": \"uuid\",\n    \"recruiterId\": \"uuid\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/assign-recruiter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"assign-recruiter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ValidateApplicantController",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicantId\": \"uuid\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/validate-applicant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"validate-applicant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetApplicantController",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1000/api/applicant?applicantId=uuid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"applicant"
+					],
+					"query": [
+						{
+							"key": "applicantId",
+							"value": "uuid"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetApplicantsByRecruiterController [ALL]",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1000/api/applicants-by-recruiter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"applicants-by-recruiter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetApplicantsByRecruiterController [FILTERED]",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1000/api/applicants-by-recruiter?recruiterName=Recruiter1&orderByExp=ASC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"applicants-by-recruiter"
+					],
+					"query": [
+						{
+							"key": "recruiterName",
+							"value": "Recruiter1"
+						},
+						{
+							"key": "orderByExp",
+							"value": "ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

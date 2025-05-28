@@ -11,6 +11,11 @@ gestionar un proyecto Laravel 10.x Nginx y MySql.
 (comprueba otros objetivos en `Makefile` con `make help`)
 
 ## Configuración
+- Instalar dependencias
+```
+composer isntall
+```
+
 - Lanzar migraciones de doctrine
 ```
 php artisan do:mi:di
@@ -19,13 +24,16 @@ php artisan do:mi:mi -n
 
 
 - Para crear la BD de testing hay que hacer lo siguiente:
-Cambiar en el .env `DB_DATABASE=nalanda_job_application_db_test` lanzar los comnados y volver a cambiar el  .env
-- (no he conseguido hacer que las migraciones de doctrine lean .env.testing)
+Cambiar en el .env `DB_DATABASE=nalanda_job_application_db_test` lanzar los comandos (no he conseguido hacer que las migraciones de doctrine y los tests lean .env.testing)
 
 ```
+make restart
 make testing-db
+make ssh-be
 php artisan do:mi:mi -n
 ```
+
+Cuando se haya acabado de probar los tests modificar el .env a su estado  anterior y volver a lanzar `make restart`
 
 ## Detalles
 
@@ -57,17 +65,12 @@ En `Infrastructure`
 Para el testing he hecho los test unitarios del método que valida las candidaturas. Para el test de integración he
 comprobado la respuesta y el acceso a BD del enpoint para crear candidatos.
 
-
-AssignRecruiterController.php
-ValidateApplicantController.php
-CreateApplicantController.php
-CreateRecruiterController.php
-GetApplicantsByRecruiterController.php
-GetApplicantController.php
+También he agregado el fichero `Nalanda.postman_collection.json` para importar en Postman con las distintas llamadas a 
+los endpoints ya creadas.
 
 ## Por último
 
-Me hubiese gustado implemntar CQRS y Eventos de Dominio aunque este ultimo creo que era inecesario y aumentaba aún más el
+Me hubiese gustado implemntar CQRS y Eventos de Dominio aunque este ultimo creo que no era inecesario y aumentaba aún más el
 tiempo y la complejidad para mí.
 
 Como apunte final simplemente destacar que no soy experto en Laravel si lo soy en Symfony y he intentado aplicar mis conocimientos
