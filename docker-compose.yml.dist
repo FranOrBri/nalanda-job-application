@@ -1,0 +1,51 @@
+services:
+  nalanda-job-application-nginx:
+    container_name: nalanda-job-application-nginx
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - "1000:80"
+    volumes:
+      - ./public:/appdata/www/public
+    networks:
+      - nalanda-job-application-network
+    depends_on:
+      - nalanda-job-application-php
+
+  nalanda-job-application-php:
+    container_name: nalanda-job-application-php
+    build:
+      context: ./docker/php
+      args:
+        UID: $U_ID
+    env_file:
+      .env
+    volumes:
+      - ./:/appdata/www
+    networks:
+      - nalanda-job-application-network
+    depends_on:
+      - nalanda-job-application-mysql
+
+  nalanda-job-application-mysql:
+    container_name: dnalanda-job-application-mysql
+    build:
+      context: ./docker/mysql
+    ports:
+      - "40000:3306"
+    env_file:
+      .env
+    command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
+    volumes:
+      - nalanda-job-application-database-data:/var/lib/mysql
+    networks:
+      - nalanda-job-application-network
+
+volumes:
+  nalanda-job-application-database-data:
+
+networks:
+  nalanda-job-application-network:
+    external: true
